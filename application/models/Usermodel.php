@@ -15,6 +15,11 @@ class Usermodel extends CI_Model
         $this->sh24_users_table = 'dbkwontom.sh24_users';
     }
 
+    public function getByUserid($option)
+    {
+        $result = $this->db->get_where('sh24_users_table', array('user_id'=>$option['user_id']))->row();
+        return $result;
+    }
     public function checkIdExist($userid)
     {
         $this->db->where('user_id', $userid);
@@ -41,7 +46,7 @@ class Usermodel extends CI_Model
     public function checkUserInfo($auth_data)
     {
         $this->db->where('user_id', $auth_data['user_id']);
-        $this->db->where('password', $auth_data['password']);
+        $this->db->where('password', password_verify($auth_data['password'], PASSWORD_BCRYPT));
 
         $data = $this->db->get($this->sh24_users_table);
 

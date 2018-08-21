@@ -20,6 +20,7 @@ var Board = (function($, Ajax) {
 
         for (var i = 0; i < len; i++) {
             html += this.tbd_board_list;
+
             $.each(this.board_list[i], function(key, value) {
                 if (html.indexOf(key) != -1) {
                     if (key == 'board_id') {

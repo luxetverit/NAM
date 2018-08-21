@@ -1,4 +1,4 @@
-(function(){
+$(function(){
         var user_id = $('#user_id');
         var pass1 = $('#password1');
         var pass2 = $('#password2');
@@ -22,7 +22,8 @@
 
         var btnjoin = $('#btn_join');
 
-    idDuplicationCheck.click(function(){
+    idDuplicationCheck.on('click', (function(){
+        console.log(user_id.val());
         var isId = /^[a-z0-9][a-z0-9_\-]{3,15}$/;
 
         if (!user_id.val()) {
@@ -42,7 +43,7 @@
             success: function (json) {
                 if(json.code === 'SUCCESS') {
                     console.log(json.code);
-                    idComment.text('사용가능한 아이디 입니다.');
+                    alert('사용가능한 아이디 입니다.');
                     idCheck.val('ok');
                 } else {
                     idComment.text('다른 아이디를 입력해 주세요.');
@@ -55,7 +56,7 @@
                 return;
             }
         })
-    });
+    }));
     pass1.blur(function(){
         var isPass = /^[a-z0-9][a-z0-9_\-]{3,15}$/;
         if (!pass1) {
@@ -127,7 +128,7 @@
         }
         return true;
     };
-    btnjoin.click(function(){
+    btnjoin.on('click', (function(){
         if (check_form() === true) {
             $.ajax({
                 type: 'post',
@@ -139,7 +140,7 @@
                 success: function (json) {
                     if(json.code === 'SUCCESS') {
                         alert('회원가입에 성공하였습니다.');
-                        window.location.href="/board/memberjoin";
+                        window.location.href="/board/memberlogin/";
                     } else {
                         alert('회원가입실패');
                     }
@@ -154,7 +155,7 @@
             alert('오류가 발생하였습니다. 가입 양식을 다시 확인해주세요');
             return false;
         }
-    });
+    }));
 
 });
 

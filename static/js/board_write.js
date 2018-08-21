@@ -9,7 +9,7 @@ var BoardWrite = (function($, $A) {
     BoardWrite.prototype.insertBoardContent = function() {
         var params = {
             'subject': $('#subject').val(),
-            'content': $('#content').val(),
+            'content': $('#content').val()
         };
 
         var check_data = this.checkData(params);

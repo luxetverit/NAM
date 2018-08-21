@@ -28,6 +28,7 @@
                     <tbody id="tbd_board_list">
                     </tbody>
                 </table>
+				<td id="pagination"></td>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12" id="tbd_board_view">
-                <table class="table table-hover" width="80%">
+                <table class="table table-hover">
                     <thead>
                     <tr>
                         <th width="50%" style="font-size: large"><?=$BOARD_CONTENT['subject']?></th>
@@ -23,7 +23,7 @@
                     </thead>
                 </table>
                     <tbody>
-                    <div class="tbody m-tcol-c">
+                    <div>
                         <?=$BOARD_CONTENT['content']?>
                     </div>
                     </tbody>
@@ -42,6 +42,15 @@
         </div>
     </div>
 </section>
+<div>
+    <label class="control-label" for="comment">댓글</label>
+    <div class="controls">
+        <textarea class="input-large" id="comment" name="comment" row="3"></textarea>
+        <input type="hidden" name="user_id" class="form-control" id="user_id" value="">
+        <input type="hidden" name="board_id" class="form-control" id="board_id" value="">
+        <button type="button" class="btn btn-small btn-primary" id="btn_comment">작성</button>
+    </div>
+</div>
 <!--pagenation-->
 <!--<ul class="pagination pagination-sm" id="paging">
     <li class="prev"><a href="#"><<</a></li>
@@ -55,6 +64,7 @@
 
 <script>
     var board_id = <?=$BOARD_CONTENT['board_id']?>;
+    var user_id = <?=$this->session->userdata('user_id')?>;
 
     $('#btn_list').on('click', function() {
         window.location.href = '/board' ;
@@ -64,9 +74,13 @@
         window.location.href = '/board/modify/' + board_id;
     });
 
-    var oBoardDelete = new BoardDelete(board_id);
+    var oBoardDelete = new BoardDelete();
 
     $('#btn_delete').on('click', oBoardDelete.deleteBoardContent.bind(oBoardDelete));
+
+    var oBoardComment = new BoardComment();
+
+    $('#btn_comment').on('click', oBoardComment.insertBoardComment.bind(oBoardComment));
 
 </script>
 

@@ -1,4 +1,5 @@
 <!-- PAGE TITLE -->
+<body>
 <section class="section section-padded">
     <div class="container-fluid">
         <div class="section-header">
@@ -35,6 +36,7 @@
             </div>
         </div>
 </section>
+</body>
 <script>
     var board_id = '<?=$BOARD_ID?>';
 

@@ -17,13 +17,13 @@ class Auth_ajax extends MY_Controller
 
         $auth_data = array(
             'user_id' =>$this->input->post('user_id', TRUE),
-            'password'=>$this->input->post('password', TRUE)
+            'password' =>$this->input->post('password', TRUE)
         );
             $userinfo = $this->usermodel->checkUserInfo($auth_data);
 
         if ($userinfo === false) {
             $this->rt['code'] = "ERROR";
-            $this->rt['msg'] = "아이디나 비밀번호를 확인해 주세요.";
+            $this->rt['msg'] = "아이디 또는 비밀번호를 확인해 주세요.";
         } else {
             $newdata = array(
                 'user_id' => $userinfo->user_id,
@@ -33,6 +33,7 @@ class Auth_ajax extends MY_Controller
             $this->session->set_userdata($newdata);
             $this->rt['code'] = "SUCCESS";
             $this->rt['msg'] = "환영합니다 회원님";
+
         }
 
         echo json_encode($this->rt);

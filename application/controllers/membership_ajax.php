@@ -29,14 +29,18 @@ class Membership_ajax extends MY_Controller
 
     public function memberJoinOk()
     {
+
+        $hash = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+
         $this->load->model('usermodel');
 
         $insert = array(
             'user_id' => $this->input->post('user_id'),
-            'password' => $this->input->post('password'),
+            'password' => $hash,
             'email' => $this->input->post('email'),
             'name' => $this->input->post('name'),
             'tel' => $this->input->post('tel'),
+            'reg_date' => date('Y-m-d H:i:s')
         );
             $data = $this->usermodel->insertUserInfo($insert);
 

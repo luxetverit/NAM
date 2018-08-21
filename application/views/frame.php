@@ -32,22 +32,24 @@
     <script src="/static/plugins/jquery.fancybox.pack.js" type="text/javascript"></script>
     <script src="/static/plugins/jquery.fancybox-media.js" type="text/javascript"></script>
     <script src="/static/plugins/script.js" type="text/javascript"></script>
+    <script src="https://ssl.google-analytics.com/ga.js" type="text/javascript"></script>;
+    <?=$ADD_SCRIPT;?>
+    <!--
     <script type="text/javascript">
         if (typeof gaJsHost == 'undefined') {
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
         }
     </script>
+    -->
     <script type="text/javascript">
         try {
             var pageTracker = _gat._getTracker("#########");
             pageTracker._trackPageview();
         } catch(err) {}
     </script>
-    <script src="/static/js/member_join.js"></script>
-    <script src="/static/js/member_login.js"></script>
 
-    <?=$ADD_SCRIPT;?>
+
 
 
 </head>
@@ -57,17 +59,18 @@
             <?php
             if ( @$this->session->userdata('is_login') == true) {
                 ?>
-                <?php echo $this->session->userdata('user_id');?> 님 환영합니다.<button type="button" class="btn btn-primary" id="btn_logout">로그아웃</button>
+                <?php echo $this->session->userdata('user_id');?> 님 환영합니다. &nbsp;&nbsp;
+                <button type="button" class="btn btn-mini btn-primary" id="btn_logout">로그아웃</button>
+                <button type="button" class="btn btn-mini btn-info" id="btn_mypage">마이페이지</button>
 
                 <?php
             } else {
                 ?>
-                <button type="button" class="btn btn-mini btn-link" id="btn_login">로그인</button>
+                <button type="button" class="btn btn-mini btn-link" id="btn_login2">로그인</button>
+                <button type="button" class="btn btn-mini btn-link" id="btn_join2">회원가입</button>
                 <?php
             }
             ?>
-            <button type="button" class="btn btn-mini btn-link" id="btn_join">회원가입</button>
-            <button type="button" class="btn btn-mini btn-link" id="btn_mypage">마이페이지</button>
     </div>
     <!-- Page Header -->
     <header id="masthead">
@@ -100,7 +103,7 @@
         </nav>
     </header>
     <script>
-        $('#btn_login').on('click', function() {
+        $('#btn_login2').on('click', function() {
             window.location.href="/board/memberlogin/"
         });
 
@@ -108,7 +111,7 @@
             window.location.href="/auth_ajax/logout/";
         });
 
-        $('#btn_join').on('click', function() {
+        $('#btn_join2').on('click', function() {
             window.location.href="/board/memberjoin/";
         });
     </script>

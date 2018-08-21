@@ -12,25 +12,30 @@ class Boardmodel extends CI_Model
 
         $this->db = $this->load->database('default', true);
 
-        $this->njw_board_table = 'dbkwontom.njw_board';
+        $this->njw_board_table = 'dbkwontom.njw_board_comment';
         $this->db->order_by("board_id", "desc");
     }
 
-	public function getBoardList($limit, $offset)
-	{
-		$row = array();
+    public function getBoardList($limit, $offset)
+    {
+        $row = array();
 
-		$this->db->order_by("board_id", "desc");
-		$this->db->limit($limit, $offset);
+        $this->db->order_by("board_id", "desc");
+        $this->db->limit($limit, $offset);
 
-		$rs = $this->db->get($this->njw_board_table);
+        $rs = $this->db->get($this->njw_board_table);
 
-		if ($rs && $rs->num_rows() > 0) {
-			$row = $rs->result_array();
-		}
+        if ($rs && $rs->num_rows() > 0) {
+            $row = $rs->result_array();
+        }
 
-		return $row;
-	}
+        return $row;
+    }
+
+    public function insertCommentInfo($board_id)
+    {
+        $this->db->where('board_id', )
+    }
 
     public function getListCount()
     {

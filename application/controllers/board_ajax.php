@@ -22,7 +22,8 @@ class Board_ajax extends MY_Controller
         $insert = array(
             'subject' => $this->input->post('subject'),
             'content' => $this->input->post('content'),
-            'user_id' => $this->session->userdata('user_id')
+            'user_id' => $this->session->userdata('user_id'),
+            'reg_date' => date('Y-m-d H:i:s')
         );
         $insert_rs = $this->boardmodel->insertBoardInfo($insert);
 
@@ -88,6 +89,33 @@ class Board_ajax extends MY_Controller
                     $this->rt['msg'] = '게시글이 삭제되었습니다.';
 
                     echo json_encode($this->rt);
+    }
+
+    public function getCommentOk()
+    {
+        $this->load->model('commentmodel');
+
+        if(@$this->session->userdata('is_login') != true) {
+            $this->rt['code'] = 'ERROR';
+            $this->rt['msg'] = '로그인이 필요한 항목입니다..';
+        }
+
+        $insert = array(
+            'comment' => $this->input->post('comment'),
+            'user_id' => $this->input->post('user_id'),
+            'board_id' => $this->input->post('board_id'),
+            'reg_date' => date('Y-m-d H:i:s')
+        );
+        $insert_rs = $this->commentmodel->insertCommentInfo($insert);
+
+        if ($insert_rs === false) {
+            $this->rt['code'] = 'ERROR';
+            $this->rt['msg'] = '댓글 등록에 실패 했습니다.';
+        }
+        $this->rt['code'] = 'SUCCESS';
+        $this->rt['msg'] = '댓글이 등록되었습니다.';
+
+        echo json_encode($this->rt);
     }
 
 }
