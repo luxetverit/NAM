@@ -3,14 +3,13 @@ var BoardComment = (function($, $A) {
 
     function BoardComment()
     {
-        this.user_id = user_id;
+        this.board_id = board_id;
     }
 
     BoardComment.prototype.insertBoardComment = function() {
         var params = {
             'comment': $('#comment').val(),
-            'user_id': $('#user_id').val(),
-            'board_id': $('#board_id').val()
+            'board_pid': $('#board_id').val()
         };
 
         var check_data = this.checkData(params);
@@ -24,7 +23,7 @@ var BoardComment = (function($, $A) {
         alert(rsps.msg);
 
         if (rsps.code == 'SUCCESS') {
-            window.location.href = '/board/';
+            window.location.href = '/board/' + board_id;
         }
     };
 
@@ -42,4 +41,5 @@ var BoardComment = (function($, $A) {
     };
 
     return BoardComment;
+
 })(jQuery, getAjaxData);

@@ -1,5 +1,5 @@
 <!-- PAGE TITLE -->
-<section class="pageTitle" style="background-image:url(/static/img/pages/page-title-bg8.jpg);">
+<section class="pageTitle" style="text-align: center">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -18,7 +18,6 @@
 
 <!-- PAGE CONTENT -->
 <article id="board_area">
-    <form class="form-horizontal" method="post" action="/board/getWriteOK" name="form_write">
         <div class="form-group" align="center">
             <label for="inputsubject">  Subject </label>
             <input type="text" name="inputsubject" class="form-control" id="subject" style="width:50%" align="center" placeholder="제목을 입력해 주세요" value="">
@@ -36,7 +35,6 @@
                 취소
             </button>
         </div>
-    </form>
 </article>
 <script>
     var oBoardWrite = new BoardWrite();

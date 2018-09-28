@@ -42,14 +42,36 @@
         </div>
     </div>
 </section>
-<div>
-    <label class="control-label" for="comment">댓글</label>
-    <div class="controls">
-        <textarea class="input-large" id="comment" name="comment" row="3"></textarea>
-        <input type="hidden" name="user_id" class="form-control" id="user_id" value="">
-        <input type="hidden" name="board_id" class="form-control" id="board_id" value="">
-        <button type="button" class="btn btn-small btn-primary" id="btn_comment">작성</button>
-    </div>
+<div class="container">
+    <form id="commentForm" name="commentForm" method="post">
+        <br><br>
+        <div>
+            <div>
+                <span><strong>Comments</strong></span> <span id="cCnt"></span>
+            </div>
+            <div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <textarea style="width: 1100px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
+                            <br>
+                            <div>
+                                <button type="button" class="btn btn-primary" id="btn_comment">
+                                    작성
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <form id="commentListForm" name="commentListForm" method="post">
+        <div id="commentList">
+        </div>
+    </form>
 </div>
 <!--pagenation-->
 <!--<ul class="pagination pagination-sm" id="paging">
@@ -63,8 +85,9 @@
 </ul>-->
 
 <script>
+
+
     var board_id = <?=$BOARD_CONTENT['board_id']?>;
-    var user_id = <?=$this->session->userdata('user_id')?>;
 
     $('#btn_list').on('click', function() {
         window.location.href = '/board' ;
@@ -75,12 +98,12 @@
     });
 
     var oBoardDelete = new BoardDelete();
-
     $('#btn_delete').on('click', oBoardDelete.deleteBoardContent.bind(oBoardDelete));
 
-    var oBoardComment = new BoardComment();
-
-    $('#btn_comment').on('click', oBoardComment.insertBoardComment.bind(oBoardComment));
+    /*var oBoardComment = new BoardComment();
+    $('#btn_comment').on('click', oBoardComment.insertBoardComment.bind(oBoardComment));*/
+   /* var oBoardGetComment = new BoardGetComment();
+    oBoardGetComment();*/
 
 </script>
 

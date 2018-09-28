@@ -15,6 +15,27 @@ class Board_ajax extends MY_Controller
         $this->load->model('boardmodel');
     }
 
+    public function getCommentView()
+    {
+
+        $board_id = $this->input->post('board_id');
+
+        $this->load->model('commentmodel');
+
+        $rs = $this->commentmodel->getCommentInfo($board_id);
+
+        if ($rs === false) {
+            $this->rt['code'] = 'ERROR';
+            $this->rt['msg'] = '댓글 등록에 실패 했습니다.';
+        }
+            $this->rt['code'] = 'SUCCESS';
+            $this->rt['msg'] = '댓글이 등록되었습니다.';
+
+        echo json_encode($this->$rs);
+
+
+    }
+
     public function getWriteOk()
     {
         $this->load->model('boardmodel');
@@ -102,8 +123,8 @@ class Board_ajax extends MY_Controller
 
         $insert = array(
             'comment' => $this->input->post('comment'),
-            'user_id' => $this->input->post('user_id'),
-            'board_id' => $this->input->post('board_id'),
+            'user_id' => $this->session->userdata('user_id'),
+            'board_pid' => $this->input->post('board_id'),
             'reg_date' => date('Y-m-d H:i:s')
         );
         $insert_rs = $this->commentmodel->insertCommentInfo($insert);

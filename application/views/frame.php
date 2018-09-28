@@ -24,6 +24,8 @@
     <link href="/static/stylesheets/theme.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/static/stylesheets/fonts.css" media="screen" rel="stylesheet" type="text/css" />
 
+    <script src="/static/js/board_comment.js"></script>
+    <script src="/static/js/board_get_comment.js"></script>
     <script src="/static/js/ajax.js"></script>
     <script src="/static/plugins/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="/static/plugins/bootstrap.js" type="text/javascript"></script>
@@ -34,6 +36,8 @@
     <script src="/static/plugins/script.js" type="text/javascript"></script>
     <script src="https://ssl.google-analytics.com/ga.js" type="text/javascript"></script>;
     <?=$ADD_SCRIPT;?>
+
+
     <!--
     <script type="text/javascript">
         if (typeof gaJsHost == 'undefined') {
