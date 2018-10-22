@@ -58,6 +58,7 @@ class Board extends MY_View
 		$this->setContent('board');
 		$this->writeView();
 	}
+
     public function board_view($idx)
     {
         $this->load->model('boardmodel');
@@ -88,6 +89,7 @@ class Board extends MY_View
     {
         if ($this->session->userdata('is_login') != true) {
             echo "<script>alert('회원만 글을 수정할 수 있습니다.');history.back(-1);</script>";
+            return;
 
         } else {
 
@@ -96,16 +98,17 @@ class Board extends MY_View
 
             $s_user_id = $this->session->userdata('user_id');
             $w_user_id = $write_id['user_id'];
-        } if($s_user_id != $w_user_id) {
+
+        } if ($s_user_id != $w_user_id) {
 
             echo "<script>alert('작성자만 글을 수정할 수 있습니다.');history.back(-1);</script>";
+                return;
 
                 } else {
 
                     $this->load->model('boardmodel');
 
                     $this->addScript('board_modify.js');
-
 
                     $this->view['BOARD_ID'] = $idx;
                     $this->view['BOARD_CONTENT'] = $this->boardmodel->getBoardView($idx);
@@ -115,14 +118,30 @@ class Board extends MY_View
                 }
             }
 
-
-    public function delBoardContent($idx)
+    public function delBoardContent($board_id)
     {
 
         $this->load->model('boardmodel');
 
-        $this->boardmodel->delBoardContent($idx);
+        if ($this->session->userdata('is_login') != true) {
+            echo "<script>alert('로그인이 필요한 항목입니다.');history.back(-1);</script>";
+            return;
+
+        }
+            $write_id = $this->boardmodel->authorityCheck($board_id);
+
+            $s_user_id = $this->session->userdata('user_id');
+            $w_user_id = $write_id['user_id'];
+
+            if ($s_user_id != $w_user_id) {
+                echo "<script>alert('본인 게시글만 삭제할 수 있습니다.');history.back(-1);</script>";
+                return;
+
+            }
+                $this->boardmodel->delBoardContent($board_id);
+                echo "<script>alert('게시글이 삭제 되었습니다.');history.back(-1);</script>";
     }
+
     public function MemberJoin()
     {
 
@@ -131,6 +150,7 @@ class Board extends MY_View
         $this->setContent('memberjoin');
         $this->writeView();
     }
+
     public function MemberLogin()
     {
         if($this->session->userdata('is_login') === true) {

@@ -97,8 +97,12 @@
         window.location.href = '/board/modify/' + board_id;
     });
 
-    var oBoardDelete = new BoardDelete();
-    $('#btn_delete').on('click', oBoardDelete.deleteBoardContent.bind(oBoardDelete));
+    $('#btn_delete').on('click', function() {
+        window.location.href = '/board/delboardcontent/' + board_id;
+    });
+
+    /*var oBoardDelete = new BoardDelete();
+    $('#btn_delete').on('click', oBoardDelete.deleteBoardContent.bind(oBoardDelete));*/
 
     /*var oBoardComment = new BoardComment();
     $('#btn_comment').on('click', oBoardComment.insertBoardComment.bind(oBoardComment));*/

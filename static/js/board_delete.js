@@ -11,10 +11,8 @@ var BoardDelete = (function($, $A) {
             'board_id' : this.board_id
         };
 
-        if(confirm('정말 삭제하시겠습니까?')) {
+        if(confirm('게시글을 삭제하시겠습니까?')) {
             $A('/board_ajax/getdeleteok/', params, this.deleteBoardContentResult.bind(this));
-        } else {
-            window.location.href = '/board/board_view/' + this.board_id;
         }
 
 

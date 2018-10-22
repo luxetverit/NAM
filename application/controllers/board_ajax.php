@@ -2,7 +2,7 @@
 
 class Board_ajax extends MY_Controller
 {
-    private $rt = array('code' => 'SUCCESS', 'msg' => '', 'data' => array());
+    private $rt = array('code' => 'ERROR', 'msg' => '', 'data' => array());
 
     public function __construct()
     {
@@ -10,6 +10,7 @@ class Board_ajax extends MY_Controller
 
         $this->load->library('session');
     }
+
     public function getPageData()
     {
         $this->load->model('boardmodel');
@@ -87,9 +88,9 @@ class Board_ajax extends MY_Controller
 
         $this->load->model('boardmodel');
 
-        if(@$this->session->userdata('is_login') != true) {
+        if($this->session->userdata('is_login') != true) {
             $this->rt['code'] = 'ERROR';
-            $this->rt['msg'] = '로그인이 필요한 항목입니다..';
+            $this->rt['msg'] = '로그인이 필요한 항목입니다.';
         }
             $write_id = $this->boardmodel->authorityCheck($board_id);
 
