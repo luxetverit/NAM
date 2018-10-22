@@ -90,16 +90,17 @@
                             <li class="">
                                 <a href="/home">Home</a>
                             </li>
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a href="/aboutus">회사소개</a>
                             </li>
                             <li class="dropdown">
                                 <a href="/product">제품소개</a>
-                            </li>
+                            </li>-->
                             <li class="dropdown">
                                 <a href="/board">게시판</a>
-                            </li>
-                            <li class=""><a href="contact.html">Contact</a></li>
+                            <!--</li>
+                            <li class=""><a href="contact.html">Contact</a>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -588,17 +589,17 @@
                 <div class="row-fluid">
                     <div class="span6 small-screen-center">
                         <h3>
-                            Smart
+                                TEST
                             <span class="light">
-                Box
-              </span>
+                                PAGE
+                            </span>
                         </h3>
                         <p>
-                            +44 1234 56.78.910  |  info@somecompany.com
+                            010-1234-5678  |  replaysoccer@naver.com
                             <br>
-                            Some St  777, 47000 Fancy town, Country.
+                            Digital St 777 My Home, Korea.
                             <br>
-                            &copy; Copyright 2013
+                            &copy; Copyright 2018
                         </p>
                     </div>
                     <div class="span6">
